@@ -179,91 +179,6 @@
             touch-action: none;
         }
 
-        .guess-options {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin: 15px 0;
-        }
-
-        .guess-btn {
-            flex: 1;
-            padding: 12px 8px;
-            border: 2px solid #edf2f4;
-            border-radius: 12px;
-            background: white;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-        }
-
-        .guess-btn.pink:hover, .guess-btn.pink.selected {
-            border-color: #ff8fa3;
-            background: #fff0f3;
-            color: #ff4d6d;
-        }
-
-        .guess-btn.blue:hover, .guess-btn.blue.selected {
-            border-color: #70d6ff;
-            background: #f0f8ff;
-            color: #0077b6;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #edf2f4;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .input-field:focus {
-            border-color: #98c1d9;
-        }
-
-        textarea.input-field {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(45deg, #ff758f, #4ea8de);
-            color: white;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 117, 143, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(255, 117, 143, 0.4);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .success-msg {
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 700;
-            display: none;
-            margin-top: 12px;
-            font-size: 0.9rem;
-        }
-
         /* MODAL CODE DE SÉCURITÉ */
         .modal-overlay {
             position: fixed;
@@ -293,32 +208,6 @@
             margin-bottom: 10px;
             display: none;
         }
-
-        /* ESPACE PARENTS */
-        .parent-link {
-            margin-top: 15px;
-            font-size: 0.85rem;
-            color: #8d99ae;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-        #parentDashboard {
-            display: none;
-            text-align: left;
-        }
-
-        .wish-item {
-            background: white;
-            padding: 10px 14px;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            border-left: 4px solid #ccc;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-        }
-        .wish-item.Fille { border-left-color: var(--primary-pink); }
-        .wish-item.Garçon { border-left-color: var(--primary-blue); }
 
         .hidden { display: none !important; }
     </style>
@@ -362,21 +251,10 @@
         </div>
     </div>
 
-  
-        <div class="parent-link" onclick="openPassModal('parent')">Espace Parents</div>
-    </div>
-
-    <!-- DASHBOARD PARENTS SECRET -->
-    <div class="card" id="parentDashboard">
-        <h2>Espace Parents 🔒</h2>
-        <button class="submit-btn" style="padding:10px; margin-bottom:12px; font-size:0.9rem;" onclick="exportToCSV()">Télécharger la liste (CSV)</button>
-        <div id="wishesList"></div>
-    </div>
-
-    <!-- MODAL DE CODE DE SÉCURITÉ -->
+    <!-- MODAL POUR PASSER LE CHRONO -->
     <div class="modal-overlay" id="passModal">
         <div class="modal-content">
-            <h3 style="margin-bottom:12px; font-family:'Fredoka', sans-serif;">Accès Protégé</h3>
+            <h3 style="margin-bottom:12px; font-family:'Fredoka', sans-serif;">Passer le chrono</h3>
             <input type="password" id="passInput" class="input-field" placeholder="Mot de passe" onkeyup="checkEnterKey(event)">
             <div class="error-msg" id="passError">Mot de passe incorrect</div>
             <button class="submit-btn" style="padding: 10px;" onclick="validatePassword()">Valider</button>
@@ -386,8 +264,6 @@
 
     <script>
         const SECRET_PASS = "pagnol";
-        let selectedGuessVal = "";
-        let actionTarget = "";
         let isRevealed = false;
         let scratchInitialized = false;
 
@@ -436,8 +312,7 @@
             }
         }
 
-        function openPassModal(target) {
-            actionTarget = target;
+        function openPassModal() {
             document.getElementById('passModal').style.display = 'flex';
             document.getElementById('passInput').value = '';
             document.getElementById('passError').style.display = 'none';
@@ -458,14 +333,8 @@
             const val = document.getElementById('passInput').value.trim().toLowerCase();
             if (val === SECRET_PASS) {
                 closePassModal();
-                if (actionTarget === 'timer') {
-                    clearInterval(timerInterval);
-                    showScratchSection();
-                } else if (actionTarget === 'parent') {
-                    document.getElementById('parentDashboard').style.display = 'block';
-                    renderParentWishes();
-                    document.getElementById('parentDashboard').scrollIntoView({ behavior: 'smooth' });
-                }
+                clearInterval(timerInterval);
+                showScratchSection();
             } else {
                 document.getElementById('passError').style.display = 'block';
             }
