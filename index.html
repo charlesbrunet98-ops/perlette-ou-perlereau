@@ -270,11 +270,11 @@
         // CALCUL DE L'HEURE CIBLE
         function getTargetTime() {
             const now = new Date();
-            let target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 19, 0, 0, 0);
+            let target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 17, 0, 0, 0);
             
             // Si 19h est déjà passé aujourd'hui, cibler 19h demain
             if (now.getTime() >= target.getTime()) {
-                target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 19, 0, 0, 0);
+                target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 17, 0, 0, 0);
             }
             return target.getTime();
         }
