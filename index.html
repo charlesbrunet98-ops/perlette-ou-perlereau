@@ -42,7 +42,7 @@
 
     h1 {
       font-family: 'Fredoka', sans-serif;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       background: linear-gradient(45deg, #ff758f, #4ea8de);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -54,7 +54,7 @@
       border-radius: 24px;
       padding: 30px 25px;
       width: 100%;
-      max-width: 440px;
+      max-width: 460px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
       text-align: center;
     }
@@ -76,7 +76,7 @@
 
     .timer-box {
       background: #f8f9fa;
-      padding: 12px;
+      padding: 14px 16px;
       border-radius: 16px;
       min-width: 75px;
       border: 1px solid #e9ecef;
@@ -84,7 +84,7 @@
 
     .timer-number {
       font-family: 'Fredoka', sans-serif;
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 700;
       color: #3d5a80;
     }
@@ -109,8 +109,8 @@
     /* CARTE À GRATTER */
     .scratch-wrapper {
       position: relative;
-      width: 260px;
-      height: 260px;
+      width: 270px;
+      height: 270px;
       margin: 0 auto;
       border-radius: 50%;
       overflow: hidden;
@@ -135,7 +135,7 @@
 
     .gender-title {
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.7rem;
+      font-size: 1.8rem;
       margin-top: 10px;
       color: #ff4d6d;
     }
@@ -205,7 +205,7 @@
   <!-- ÉTAPE 1 : COMPTE À REBOURS -->
   <div class="card" id="stepTimer">
     <h2>Le Grand Décompte</h2>
-    <p style="font-size:0.9rem; color:#6c757d;">Révélation prévue à 19h00</p>
+    <p style="font-size:0.9rem; color:#6c757d; margin-top: 4px;">Révélation prévue à 19h00</p>
     <div class="timer-container">
       <div class="timer-box">
         <div class="timer-number" id="t-hours">00</div>
@@ -229,13 +229,13 @@
     <div class="scratch-wrapper">
       <div class="scratch-reveal-content">
         <div style="font-size: 3.5rem;">👧</div>
-        <div class="gender-title">C'est une Perlette ! 💖✨</div>
+        <div class="gender-title">c'est une Perlette ! 👧💖👶✨</div>
       </div>
-      <canvas id="scratchCanvas" width="260" height="260"></canvas>
+      <canvas id="scratchCanvas" width="270" height="270"></canvas>
     </div>
   </div>
 
-  <!-- MODAL PASS -->
+  <!-- MODAL CODE -->
   <div class="modal-overlay" id="passModal">
     <div class="modal-content">
       <h3 style="margin-bottom:12px;">Code secret</h3>
@@ -249,24 +249,11 @@
     const SECRET_PASS = "pagnol";
     let isRevealed = false;
 
-    // Fixer l'objectif à 19h aujourd'hui
-    const targetDate = new Date();
-    targetDate.setHours(19, 0, 0, 0);
-
-    function showScratchCard() {
-      document.getElementById('stepTimer').classList.add('hidden');
-      document.getElementById('stepScratch').classList.remove('hidden');
-      initScratchCard();
-    }
-
-    function updateTimer() {
+    // Calcul de l'heure cible (19h)
+    function getTargetTime() {
       const now = new Date();
-      const diff = targetDate.getTime() - now.getTime();
-
-      if (diff <= 0) {
-        clearInterval(timerInterval);
-        showScratchCard();
-        return;
+      const target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 19, 0, 0, 0);
+      if (now.getTime() > target.getTime()) {
+        target.setDate(target.getDate() + 1);
       }
-
-      const h = Math.floor(diff / (1000 * 6
+      return target.getTime();
