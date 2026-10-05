@@ -319,7 +319,7 @@
         <div class="timer-label">Secondes</div>
       </div>
     </div>
-    <button class="btn-bypass" onclick="openPassModal('timer')">Passer le chrono (Mode Test)</button>
+    <button class="btn-bypass" onclick="openPassModal('timer')">Passer le chrono </button>
   </div>
 
   <!-- ETAPE 2 : CARTE À GRATTER -->
@@ -337,7 +337,7 @@
 
   <!-- FORMULAIRE PRONOSTICS & MES MESSAGES PRIVÉS -->
   <div class="card">
-    <h2>Dernier Guess & Doux Mots</h2>
+    <h2>Dernier Guess !</h2>
     <form id="guessForm" onsubmit="handleFormSubmit(event)">
       <input type="text" id="guestName" class="input-field" placeholder="Votre prénom / Nom" required>
       
@@ -346,13 +346,13 @@
         <button type="button" class="guess-btn blue" onclick="selectGuess('Garçon', this)">Perlereau ⚓</button>
       </div>
 
-      <textarea id="guestMessage" class="input-field" placeholder="Un petit mot doux pour le bébé ou les futurs parents..." required></textarea>
+      <textarea id="guestMessage" class="input-field" placeholder="Un petit mot" required></textarea>
 
       <button type="submit" class="submit-btn">Envoyer mon message ❤️</button>
     </form>
 
     <div class="success-msg" id="successMessage">
-      ✨ Merci ! Votre message et votre pronostic ont bien été transmis aux parents !
+      ✨ Merci ! Votre message et votre pronostic ont bien été transmis !
     </div>
 
     <div class="parent-link" onclick="openPassModal('parent')">Espace Parents</div>
