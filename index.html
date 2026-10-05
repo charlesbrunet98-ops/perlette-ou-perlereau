@@ -1,657 +1,655 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perlette ou Perlereau</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <style>
-    :root {
-      --primary-pink: #ff8fa3;
-      --primary-blue: #70d6ff;
-      --accent-gold: #ffd166;
-      --bg-gradient: linear-gradient(135deg, #fff5f7 0%, #f0f7ff 100%);
-      --text-dark: #2b2d42;
-      --card-bg: rgba(255, 255, 255, 0.9);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perlette ou Perlereau ✨</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary-pink: #ff8fa3;
+            --primary-blue: #70d6ff;
+            --accent-gold: #ffd166;
+            --bg-gradient: linear-gradient(135deg, #fff5f7 0%, #f0f7ff 100%);
+            --text-dark: #2b2d42;
+            --card-bg: rgba(255, 255, 255, 0.9);
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Quicksand', sans-serif;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+        }
 
-    body {
-      background: var(--bg-gradient);
-      color: var(--text-dark);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 15px 60px 15px;
-    }
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 15px 60px 15px;
+        }
 
-    header {
-      text-align: center;
-      margin-top: 20px;
-      margin-bottom: 25px;
-    }
+        header {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
 
-    h1 {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 2.8rem;
-      background: linear-gradient(45deg, #ff758f, #4ea8de);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
-    }
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #ff758f, #4ea8de);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
 
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
-      padding: 25px;
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      margin-bottom: 25px;
-      text-align: center;
-    }
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 25px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            text-align: center;
+        }
 
-    .card h2 {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.6rem;
-      color: #4a4e69;
-      margin-bottom: 15px;
-    }
+        .card h2 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.6rem;
+            color: #4a4e69;
+            margin-bottom: 15px;
+        }
 
-    /* CHRONO */
-    .timer-container {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin: 20px 0;
-    }
+        /* CHRONO */
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0;
+        }
 
-    .timer-box {
-      background: white;
-      padding: 12px 16px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      min-width: 70px;
-    }
+        .timer-box {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            min-width: 70px;
+        }
 
-    .timer-number {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #3d5a80;
-    }
+        .timer-number {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3d5a80;
+        }
 
-    .timer-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      color: #98c1d9;
-      font-weight: 700;
-    }
+        .timer-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #98c1d9;
+            font-weight: 700;
+        }
 
-    .btn-bypass {
-      background: none;
-      border: none;
-      color: #a0aab2;
-      font-size: 0.85rem;
-      text-decoration: underline;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: color 0.2s;
-    }
+        .btn-bypass {
+            background: none;
+            border: none;
+            color: #a0aab2;
+            font-size: 0.85rem;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: color 0.2s;
+        }
 
-    .btn-bypass:hover {
-      color: #4a4e69;
-    }
+        .btn-bypass:hover {
+            color: #4a4e69;
+        }
 
-    /* CARTE À GRATTER */
-    .scratch-wrapper {
-      position: relative;
-      width: 280px;
-      height: 280px;
-      margin: 0 auto;
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
+        /* CARTE À GRATTER */
+        .scratch-wrapper {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
 
-    .scratch-reveal-content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: white;
-      border-radius: 50%;
-      padding: 20px;
-      text-align: center;
-    }
+        .scratch-reveal-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 50%;
+            padding: 20px;
+            text-align: center;
+        }
 
-    .scratch-reveal-content.pink {
-      background: radial-gradient(circle, #fff0f5 0%, #ffdeeb 100%);
-    }
+        .scratch-reveal-content.pink {
+            background: radial-gradient(circle, #fff0f5 0%, #ffdeeb 100%);
+        }
 
-    .gender-title {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 2rem;
-      margin-top: 10px;
-      animation: pulse 1.5s infinite alternate;
-    }
+        .gender-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
+            margin-top: 10px;
+            animation: pulse 1.5s infinite alternate;
+        }
 
-    .gender-title.pink { color: #ff4d6d; }
+        .gender-title.pink { color: #ff4d6d; }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.05); }
-    }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
 
-    #scratchCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      touch-action: none;
-    }
+        #scratchCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            touch-action: none;
+        }
 
-    /* FORMULAIRE VŒUX & GUESS */
-    .guess-options {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin: 15px 0;
-    }
+        /* FORMULAIRE VŒUX & GUESS */
+        .guess-options {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 15px 0;
+        }
 
-    .guess-btn {
-      flex: 1;
-      padding: 12px 8px;
-      border: 2px solid #e0e0e0;
-      border-radius: 12px;
-      background: white;
-      cursor: pointer;
-      font-weight: 700;
-      transition: all 0.2s;
-    }
+        .guess-btn {
+            flex: 1;
+            padding: 12px 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
 
-    .guess-btn.pink:hover, .guess-btn.pink.selected {
-      border-color: #ff8fa3;
-      background: #fff0f3;
-      color: #ff4d6d;
-    }
+        .guess-btn.pink:hover, .guess-btn.pink.selected {
+            border-color: #ff8fa3;
+            background: #fff0f3;
+            color: #ff4d6d;
+        }
 
-    .guess-btn.blue:hover, .guess-btn.blue.selected {
-      border-color: #70d6ff;
-      background: #f0f8ff;
-      color: #0077b6;
-    }
+        .guess-btn.blue:hover, .guess-btn.blue.selected {
+            border-color: #70d6ff;
+            background: #f0f8ff;
+            color: #0077b6;
+        }
 
-    .input-field {
-      width: 100%;
-      padding: 12px 15px;
-      border: 2px solid #edf2f4;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      font-size: 0.95rem;
-      outline: none;
-    }
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #edf2f4;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            outline: none;
+        }
 
-    .input-field:focus {
-      border-color: #98c1d9;
-    }
+        .input-field:focus {
+            border-color: #98c1d9;
+        }
 
-    textarea.input-field {
-      resize: vertical;
-      min-height: 80px;
-    }
+        textarea.input-field {
+            resize: vertical;
+            min-height: 80px;
+        }
 
-    .submit-btn {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(45deg, #ff758f, #4ea8de);
-      color: white;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.1rem;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 117, 143, 0.3);
-      transition: transform 0.2s;
-    }
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #ff758f, #4ea8de);
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 117, 143, 0.3);
+            transition: transform 0.2s;
+        }
 
-    .submit-btn:hover {
-      transform: translateY(-2px);
-    }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
 
-    .success-msg {
-      background: #e8f5e9;
-      color: #2e7d32;
-      padding: 15px;
-      border-radius: 12px;
-      font-weight: 700;
-      display: none;
-      margin-top: 15px;
-    }
+        .success-msg {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 700;
+            display: none;
+            margin-top: 15px;
+        }
 
-    /* MODAL CODE DE SÉCURITÉ */
-    .modal-overlay {
-      position: fixed;
-      top:0; left:0; right:0; bottom:0;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
+        /* MODAL CODE DE SÉCURITÉ */
+        .modal-overlay {
+            position: fixed;
+            top:0; left:0; right:0; bottom:0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
 
-    .modal-content {
-      background: white;
-      padding: 25px;
-      border-radius: 20px;
-      max-width: 320px;
-      width: 90%;
-      text-align: center;
-    }
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            max-width: 320px;
+            width: 90%;
+            text-align: center;
+        }
 
-    /* ESPACE PARENTS DISCRET */
-    .parent-link {
-      margin-top: 15px;
-      font-size: 0.8rem;
-      color: #a0aab2;
-      text-decoration: underline;
-      cursor: pointer;
-    }
+        /* ESPACE PARENTS DISCRET */
+        .parent-link {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #a0aab2;
+            text-decoration: underline;
+            cursor: pointer;
+        }
 
-    #parentDashboard {
-      display: none;
-      text-align: left;
-    }
+        #parentDashboard {
+            display: none;
+            text-align: left;
+        }
 
-    .wish-item {
-      background: white;
-      padding: 10px 14px;
-      border-radius: 10px;
-      margin-bottom: 8px;
-      border-left: 4px solid #ccc;
-      font-size: 0.9rem;
-    }
-    .wish-item.Fille { border-left-color: var(--primary-pink); }
-    .wish-item.Garçon { border-left-color: var(--primary-blue); }
+        .wish-item {
+            background: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            border-left: 4px solid #ccc;
+            font-size: 0.9rem;
+        }
+        .wish-item.Fille { border-left-color: var(--primary-pink); }
+        .wish-item.Garçon { border-left-color: var(--primary-blue); }
 
-    .hidden { display: none !important; }
-  </style>
+        .hidden { display: none !important; }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>Perlette ou Perlereau</h1>
-  </header>
+    <header>
+        <h1>Perlette ou Perlereau</h1>
+    </header>
 
-  <!-- ETAPE 1 : COMPTE À REBOURS -->
-  <div class="card" id="stepTimer">
-    <h2>Le Grand Décompte</h2>
-    <div class="timer-container">
-      <div class="timer-box">
-        <div class="timer-number" id="t-hours">05</div>
-        <div class="timer-label">Heures</div>
-      </div>
-      <div class="timer-box">
-        <div class="timer-number" id="t-minutes">00</div>
-        <div class="timer-label">Minutes</div>
-      </div>
-      <div class="timer-box">
-        <div class="timer-number" id="t-seconds">00</div>
-        <div class="timer-label">Secondes</div>
-      </div>
-    </div>
-    <button class="btn-bypass" onclick="openPassModal('timer')">Passer le chrono </button>
-  </div>
-
-  <!-- ETAPE 2 : CARTE À GRATTER -->
-  <div class="card hidden" id="stepScratch">
-    <h2>Grattez pour découvrir !</h2>
-    
-    <div class="scratch-wrapper">
-      <div class="scratch-reveal-content pink" id="revealBox">
-        <div style="font-size: 3.5rem;">👧</div>
-        <div class="gender-title pink" id="genderText">c'est une Perlette ! 👧💖👶✨</div>
-      </div>
-      <canvas id="scratchCanvas" width="280" height="280"></canvas>
-    </div>
-  </div>
-
-  <!-- FORMULAIRE PRONOSTICS & MES MESSAGES PRIVÉS -->
-  <div class="card">
-    <h2>Dernier Guess !</h2>
-    <form id="guessForm" onsubmit="handleFormSubmit(event)">
-      <input type="text" id="guestName" class="input-field" placeholder="Votre prénom / Nom" required>
-      
-      <div class="guess-options">
-        <button type="button" class="guess-btn pink" onclick="selectGuess('Fille', this)">Perlette 🎀</button>
-        <button type="button" class="guess-btn blue" onclick="selectGuess('Garçon', this)">Perlereau ⚓</button>
-      </div>
-
-      <textarea id="guestMessage" class="input-field" placeholder="Un petit mot" required></textarea>
-
-      <button type="submit" class="submit-btn">Envoyer mon message ❤️</button>
-    </form>
-
-    <div class="success-msg" id="successMessage">
-      ✨ Merci ! Votre message et votre pronostic ont bien été transmis !
-    </div>
-
-    <div class="parent-link" onclick="openPassModal('parent')">Espace Parents</div>
-  </div>
-
-  <!-- DASHBOARD PARENTS SECRET -->
-  <div class="card" id="parentDashboard">
-    <h2>Espace Parents 🔒</h2>
-    <button class="submit-btn" style="padding:8px; margin-bottom:12px; font-size:0.9rem;" onclick="exportToCSV()">Télécharger la liste (CSV)</button>
-    <div id="wishesList"></div>
-  </div>
-
-  <!-- MODAL DE CODE -->
-  <div class="modal-overlay" id="passModal">
-    <div class="modal-content">
-      <h3 style="margin-bottom:12px;">Accès Protégé</h3>
-      <input type="password" id="passInput" class="input-field" placeholder="Mot de passe">
-      <button class="submit-btn" onclick="validatePassword()">Valider</button>
-      <button class="btn-bypass" onclick="closePassModal()" style="margin-top:8px;">Annuler</button>
-    </div>
-  </div>
-
-  <script>
-    // CONFIGURATION GENERALE
-    const SECRET_PASS = "augustine";
-    let selectedGuessVal = "";
-    let actionTarget = "";
-    let isRevealed = false;
-
-    // GESTION DU DECOMPTE 5H PERSISTANT
-    let targetTime = localStorage.getItem('gender_reveal_target');
-    if (!targetTime) {
-      targetTime = new Date().getTime() + (5 * 60 * 60 * 1000); // 5 Heures
-      localStorage.setItem('gender_reveal_target', targetTime);
-    } else {
-      targetTime = parseInt(targetTime, 10);
-    }
-
-    function updateTimer() {
-      const now = new Date().getTime();
-      const diff = targetTime - now;
-
-      if (diff <= 0) {
-        document.getElementById('stepTimer').classList.add('hidden');
-        document.getElementById('stepScratch').classList.remove('hidden');
-        initScratchCard();
-        return;
-      }
-
-      const h = Math.floor(diff / (1000 * 60 * 60));
-      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-      document.getElementById('t-hours').innerText = String(h).padStart(2, '0');
-      document.getElementById('t-minutes').innerText = String(m).padStart(2, '0');
-      document.getElementById('t-seconds').innerText = String(s).padStart(2, '0');
-    }
-
-    const timerInterval = setInterval(updateTimer, 1000);
-    updateTimer();
-
-    // SÉCURITÉ / MODAL
-    function openPassModal(target) {
-      actionTarget = target;
-      document.getElementById('passModal').style.display = 'flex';
-      document.getElementById('passInput').value = '';
-      document.getElementById('passInput').focus();
-    }
-
-    function closePassModal() {
-      document.getElementById('passModal').style.display = 'none';
-    }
-
-    function validatePassword() {
-      const val = document.getElementById('passInput').value;
-      if (val === SECRET_PASS) {
-        closePassModal();
-        if (actionTarget === 'timer') {
-          clearInterval(timerInterval);
-          document.getElementById('stepTimer').classList.add('hidden');
-          document.getElementById('stepScratch').classList.remove('hidden');
-          initScratchCard();
-        } else if (actionTarget === 'parent') {
-          document.getElementById('parentDashboard').style.display = 'block';
-          renderParentWishes();
-          document.getElementById('parentDashboard').scrollIntoView({ behavior: 'smooth' });
-        }
-      } else {
-        alert('Mot de passe incorrect');
-      }
-    }
-
-    // CARTE À GRATTER CANVA
-    function initScratchCard() {
-      const canvas = document.getElementById('scratchCanvas');
-      const ctx = canvas.getContext('2d');
-      const width = canvas.width;
-      const height = canvas.height;
-
-      // Fond doré
-      const grad = ctx.createLinearGradient(0, 0, width, height);
-      grad.addColorStop(0, '#bf953f');
-      grad.addColorStop(0.25, '#fcf6ba');
-      grad.addColorStop(0.5, '#b38728');
-      grad.addColorStop(0.75, '#fbf5b7');
-      grad.addColorStop(1, '#aa771c');
-
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(width/2, height/2, width/2, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Texte
-      ctx.fillStyle = "#5c4004";
-      ctx.font = "bold 18px Quicksand";
-      ctx.textAlign = "center";
-      ctx.fillText("Grattez ici ✨", width/2, height/2 + 6);
-
-      let isDrawing = false;
-
-      function scratch(e) {
-        if (!isDrawing) return;
-        const rect = canvas.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        const x = clientX - rect.left;
-        const y = clientY - rect.top;
-
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.beginPath();
-        ctx.arc(x, y, 22, 0, Math.PI * 2);
-        ctx.fill();
-
-        checkScratchPercentage();
-      }
-
-      function checkScratchPercentage() {
-        if (isRevealed) return;
-
-        const imgData = ctx.getImageData(0, 0, width, height);
-        const pixels = imgData.data;
-        let transparentPixels = 0;
-
-        for (let i = 3; i < pixels.length; i += 4) {
-          if (pixels[i] === 0) transparentPixels++;
-        }
-
-        const percentage = (transparentPixels / (pixels.length / 4)) * 100;
-
-        // Seuil 10%
-        if (percentage >= 10) {
-          isRevealed = true;
-          triggerLongCelebration();
-        }
-      }
-
-      canvas.addEventListener('mousedown', () => isDrawing = true);
-      canvas.addEventListener('mouseup', () => isDrawing = false);
-      canvas.addEventListener('mousemove', scratch);
-
-      canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
-      canvas.addEventListener('touchend', () => isDrawing = false);
-      canvas.addEventListener('touchmove', scratch);
-    }
-
-    // CONFETTIS 5X PLUS LONGS ET MUSIQUE LONGE
-    function triggerLongCelebration() {
-      playLongMusic();
-
-      const duration = 12500; // 12.5 Secondes
-      const end = Date.now() + duration;
-
-      (function frame() {
-        confetti({
-          particleCount: 4,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 },
-          colors: ['#ff8fa3', '#ffd166', '#ffffff', '#ffb3c1']
-        });
-        confetti({
-          particleCount: 4,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 },
-          colors: ['#ff8fa3', '#ffd166', '#ffffff', '#ffb3c1']
-        });
-
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
-      }());
-    }
-
-    // MELODIE WEB AUDIO API
-    function playLongMusic() {
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        const ctx = new AudioContext();
-
-        const notes = [
-          { f: 523.25, d: 0.3 }, { f: 659.25, d: 0.3 }, { f: 783.99, d: 0.3 }, { f: 1046.50, d: 0.6 },
-          { f: 880.00, d: 0.3 }, { f: 1046.50, d: 0.8 },
-          { f: 587.33, d: 0.3 }, { f: 698.46, d: 0.3 }, { f: 880.00, d: 0.3 }, { f: 1174.66, d: 0.6 },
-          { f: 1046.50, d: 0.3 }, { f: 1318.51, d: 0.9 }
-        ];
-
-        let now = ctx.currentTime;
-        notes.forEach(note => {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(note.f, now);
-          
-          gain.gain.setValueAtTime(0.12, now);
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + note.d);
-
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-
-          osc.start(now);
-          osc.stop(now + note.d);
-          now += note.d * 0.9;
-        });
-      } catch(e) {
-        console.log("Audio non supporté");
-      }
-    }
-
-    // FORMULAIRE PRONOSTIC / VOEUX
-    function selectGuess(val, btn) {
-      selectedGuessVal = val;
-      document.querySelectorAll('.guess-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-    }
-
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('guestName').value;
-      const msg = document.getElementById('guestMessage').value;
-
-      if (!selectedGuessVal) {
-        alert("N'oubliez pas de choisir votre pronostic (Perlette ou Perlereau) !");
-        return;
-      }
-
-      const existing = JSON.parse(localStorage.getItem('baby_wishes') || '[]');
-      existing.push({
-        name: name,
-        guess: selectedGuessVal,
-        message: msg,
-        date: new Date().toLocaleDateString('fr-FR')
-      });
-
-      localStorage.setItem('baby_wishes', JSON.stringify(existing));
-
-      document.getElementById('guessForm').reset();
-      document.querySelectorAll('.guess-btn').forEach(b => b.classList.remove('selected'));
-      selectedGuessVal = "";
-
-      document.getElementById('successMessage').style.display = 'block';
-      setTimeout(() => {
-        document.getElementById('successMessage').style.display = 'none';
-      }, 5000);
-    }
-
-    function renderParentWishes() {
-      const wishes = JSON.parse(localStorage.getItem('baby_wishes') || '[]');
-      const container = document.getElementById('wishesList');
-      if (wishes.length === 0) {
-        container.innerHTML = "<p style='font-size:0.9rem; color:#888;'>Aucun message reçu pour l'instant.</p>";
-        return;
-      }
-
-      container.innerHTML = wishes.map(w => `
-        <div class="wish-item ${w.guess}">
-          <strong>${w.name}</strong> (${w.guess}) - <small>${w.date}</small><br>
-          <em>"${w.message}"</em>
+    <!-- ETAPE 1 : COMPTE À REBOURS -->
+    <div class="card" id="stepTimer">
+        <h2>Le Grand Décompte</h2>
+        <div class="timer-container">
+            <div class="timer-box">
+                <div class="timer-number" id="t-hours">00</div>
+                <div class="timer-label">Heures</div>
+            </div>
+            <div class="timer-box">
+                <div class="timer-number" id="t-minutes">00</div>
+                <div class="timer-label">Minutes</div>
+            </div>
+            <div class="timer-box">
+                <div class="timer-number" id="t-seconds">00</div>
+                <div class="timer-label">Secondes</div>
+            </div>
         </div>
-      `).reverse().join('');
-    }
+        <button class="btn-bypass" onclick="openPassModal('timer')">Passer le chrono</button>
+    </div>
 
-    function exportToCSV() {
-      const wishes = JSON.parse(localStorage.getItem('baby_wishes') || '[]');
-      if (wishes.length === 0) return alert("Aucune donnée à exporter.");
+    <!-- ETAPE 2 : CARTE À GRATTER -->
+    <div class="card hidden" id="stepScratch">
+        <h2>Grattez pour découvrir !</h2>
+        
+        <div class="scratch-wrapper">
+            <div class="scratch-reveal-content pink" id="revealBox">
+                <div style="font-size: 3.5rem;">👧</div>
+                <div class="gender-title pink" id="genderText">C'est une Perlette ! 👧💖👶✨</div>
+            </div>
+            <canvas id="scratchCanvas" width="280" height="280"></canvas>
+        </div>
+    </div>
 
-      let csvContent = "data:text/csv;charset=utf-8,Nom,Pronostic,Message,Date\n";
-      wishes.forEach(w => {
-        csvContent += `"${w.name}","${w.guess}","${w.message.replace(/"/g, '""')}","${w.date}"\n`;
-      });
+    <!-- FORMULAIRE PRONOSTICS & MES MESSAGES PRIVÉS -->
+    <div class="card">
+        <h2>Dernier Guess !</h2>
+        <form id="guessForm" onsubmit="handleFormSubmit(event)">
+            <input type="text" id="guestName" class="input-field" placeholder="Votre prénom / Nom" required>
+            
+            <div class="guess-options">
+                <button type="button" class="guess-btn pink" onclick="selectGuess('Fille', this)">Perlette 🎀</button>
+                <button type="button" class="guess-btn blue" onclick="selectGuess('Garçon', this)">Perlereau ⚓</button>
+            </div>
 
-      const encodedUri = encodeURI(csvContent);
-      const link = document.createElement("a");
-      link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "pronostics_baby.csv");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  </script>
+            <textarea id="guestMessage" class="input-field" placeholder="Un petit mot" required></textarea>
+
+            <button type="submit" class="submit-btn">Envoyer mon message ❤️</button>
+        </form>
+
+        <div class="success-msg" id="successMessage">
+            ✨ Merci ! Votre message et votre pronostic ont bien été transmis !
+        </div>
+
+        <div class="parent-link" onclick="openPassModal('parent')">Espace Parents</div>
+    </div>
+
+    <!-- DASHBOARD PARENTS SECRET -->
+    <div class="card" id="parentDashboard">
+        <h2>Espace Parents 🔒</h2>
+        <button class="submit-btn" style="padding:8px; margin-bottom:12px; font-size:0.9rem;" onclick="exportToCSV()">Télécharger la liste (CSV)</button>
+        <div id="wishesList"></div>
+    </div>
+
+    <!-- MODAL DE CODE -->
+    <div class="modal-overlay" id="passModal">
+        <div class="modal-content">
+            <h3 style="margin-bottom:12px;">Accès Protégé</h3>
+            <input type="password" id="passInput" class="input-field" placeholder="Mot de passe">
+            <button class="submit-btn" onclick="validatePassword()">Valider</button>
+            <button class="btn-bypass" onclick="closePassModal()" style="margin-top:8px;">Annuler</button>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURATION GENERALE
+        const SECRET_PASS = "pagnol";
+        let selectedGuessVal = "";
+        let actionTarget = "";
+        let isRevealed = false;
+
+        // GESTION DU DECOMPTE FIXÉ À 19H AUJOURD'HUI
+        function getToday19hTarget() {
+            const now = new Date();
+            const target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 19, 0, 0, 0);
+            return target.getTime();
+        }
+
+        const targetTime = getToday19hTarget();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = targetTime - now;
+
+            if (diff <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('stepTimer').classList.add('hidden');
+                document.getElementById('stepScratch').classList.remove('hidden');
+                initScratchCard();
+                return;
+            }
+
+            const h = Math.floor(diff / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('t-hours').innerText = String(h).padStart(2, '0');
+            document.getElementById('t-minutes').innerText = String(m).padStart(2, '0');
+            document.getElementById('t-seconds').innerText = String(s).padStart(2, '0');
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+        updateTimer();
+
+        function openPassModal(target) {
+            actionTarget = target;
+            document.getElementById('passModal').style.display = 'flex';
+            document.getElementById('passInput').value = '';
+            document.getElementById('passInput').focus();
+        }
+
+        function closePassModal() {
+            document.getElementById('passModal').style.display = 'none';
+        }
+
+        function validatePassword() {
+            const val = document.getElementById('passInput').value;
+            if (val === SECRET_PASS) {
+                closePassModal();
+                if (actionTarget === 'timer') {
+                    clearInterval(timerInterval);
+                    document.getElementById('stepTimer').classList.add('hidden');
+                    document.getElementById('stepScratch').classList.remove('hidden');
+                    initScratchCard();
+                } else if (actionTarget === 'parent') {
+                    document.getElementById('parentDashboard').style.display = 'block';
+                    renderParentWishes();
+                    document.getElementById('parentDashboard').scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                alert('Mot de passe incorrect');
+            }
+        }
+
+        function initScratchCard() {
+            const canvas = document.getElementById('scratchCanvas');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Fond doré
+            const grad = ctx.createLinearGradient(0, 0, width, height);
+            grad.addColorStop(0, '#bf953f');
+            grad.addColorStop(0.25, '#fcf6ba');
+            grad.addColorStop(0.5, '#b38728');
+            grad.addColorStop(0.75, '#fbf5b7');
+            grad.addColorStop(1, '#aa771c');
+
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(width/2, height/2, width/2, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Texte
+            ctx.fillStyle = "#5c4004";
+            ctx.font = "bold 18px Quicksand";
+            ctx.textAlign = "center";
+            ctx.fillText("Grattez ici ✨", width/2, height/2 + 6);
+
+            let isDrawing = false;
+
+            function scratch(e) {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                const x = clientX - rect.left;
+                const y = clientY - rect.top;
+
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 22, 0, Math.PI * 2);
+                ctx.fill();
+
+                checkScratchPercentage();
+            }
+
+            function checkScratchPercentage() {
+                if (isRevealed) return;
+
+                const imgData = ctx.getImageData(0, 0, width, height);
+                const pixels = imgData.data;
+                let transparentPixels = 0;
+
+                for (let i = 3; i < pixels.length; i += 4) {
+                    if (pixels[i] === 0) transparentPixels++;
+                }
+
+                const percentage = (transparentPixels / (pixels.length / 4)) * 100;
+
+                // Seuil 10%
+                if (percentage >= 10) {
+                    isRevealed = true;
+                    triggerLongCelebration();
+                }
+            }
+
+            canvas.addEventListener('mousedown', () => isDrawing = true);
+            canvas.addEventListener('mouseup', () => isDrawing = false);
+            canvas.addEventListener('mousemove', scratch);
+
+            canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+            canvas.addEventListener('touchend', () => isDrawing = false);
+            canvas.addEventListener('touchmove', scratch);
+        }
+
+        function triggerLongCelebration() {
+            playLongMusic();
+
+            const duration = 12500; // 12.5 Secondes
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 4,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff8fa3', '#ffd166', '#ffffff', '#ffb3c1']
+                });
+                confetti({
+                    particleCount: 4,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff8fa3', '#ffd166', '#ffffff', '#ffb3c1']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        function playLongMusic() {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const ctx = new AudioContext();
+
+                const notes = [
+                    { f: 523.25, d: 0.3 }, { f: 659.25, d: 0.3 }, { f: 783.99, d: 0.3 }, { f: 1046.50, d: 0.6 },
+                    { f: 880.00, d: 0.3 }, { f: 1046.50, d: 0.8 },
+                    { f: 587.33, d: 0.3 }, { f: 698.46, d: 0.3 }, { f: 880.00, d: 0.3 }, { f: 1174.66, d: 0.6 },
+                    { f: 1046.50, d: 0.3 }, { f: 1318.51, d: 0.9 }
+                ];
+
+                let now = ctx.currentTime;
+                notes.forEach(note => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(note.f, now);
+                    
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + note.d);
+
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+
+                    osc.start(now);
+                    osc.stop(now + note.d);
+                    now += note.d * 0.9;
+                });
+            } catch(e) {
+                console.log("Audio non supporté");
+            }
+        }
+
+        function selectGuess(val, btn) {
+            selectedGuessVal = val;
+            document.querySelectorAll('.guess-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('guestName').value;
+            const msg = document.getElementById('guestMessage').value;
+
+            if (!selectedGuessVal) {
+                alert("N'oubliez pas de choisir votre pronostic (Perlette ou Perlereau) !");
+                return;
+            }
+
+            const existing = JSON.parse(localStorage.getItem('baby_wishes') || '[]');
+            existing.push({
+                name: name,
+                guess: selectedGuessVal,
+                message: msg,
+                date: new Date().toLocaleDateString('fr-FR')
+            });
+
+            localStorage.setItem('baby_wishes', JSON.stringify(existing));
+
+            document.getElementById('guessForm').reset();
+            document.querySelectorAll('.guess-btn').forEach(b => b.classList.remove('selected'));
+            selectedGuessVal = "";
+
+            document.getElementById('successMessage').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        }
+
+        function renderParentWishes() {
+            const wishes = JSON.parse(localStorage.getItem('baby_wishes') || '[]');
+            const container = document.getElementById('wishesList');
+            if (wishes.length === 0) {
+                container.innerHTML = "<p style='font-size:0.9rem; color:#888;'>Aucun message reçu pour l'instant.</p>";
+                return;
+            }
+
+            container.innerHTML = wishes.map(w => `
+                <div class="wish-item ${w.guess}">
+                    <strong>${w.name}</strong> (${w.guess}) - <small>${w.date}</small><br>
+                    <em>"${w.message}"</em>
+                </div>
+            `).reverse().join('');
+        }
+
+        function exportToCSV() {
+            const wishes = JSON.parse(localStorage.getItem('baby_wishes') || '[]');
+            if (wishes.length === 0) return alert("Aucune donnée à exporter.");
+
+            let csvContent = "data:text/csv;charset=utf-8,Nom,Pronostic,Message,Date\n";
+            wishes.forEach(w => {
+                csvContent += `"${w.name}","${w.guess}","${w.message.replace(/"/g, '""')}","${w.date}"\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "pronostics_baby.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
 </body>
 </html>
