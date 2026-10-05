@@ -2,477 +2,1082 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>Perlette ou Perlereau ✨</title>
-    <!-- Google Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-    <!-- Canvas Confetti Library -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
     <style>
         :root {
-            --primary-pink: #ff8fa3;
-            --primary-blue: #70d6ff;
-            --accent-gold: #ffd166;
-            --bg-gradient: linear-gradient(135deg, #fff5f7 0%, #f0f7ff 100%);
-            --text-dark: #2b2d42;
-            --card-bg: rgba(255, 255, 255, 0.95);
+            --pink: #ff8fa3;
+            --pink-light: #ffd6df;
+            --blue: #70d6ff;
+            --blue-light: #dff6ff;
+            --yellow: #ffd166;
+            --purple: #9b8cff;
+            --dark: #2b2d42;
+            --white: #ffffff;
         }
 
         * {
             box-sizing: border-box;
+        }
+
+        html,
+        body {
             margin: 0;
             padding: 0;
-            font-family: 'Quicksand', sans-serif;
-            -webkit-tap-highlight-color: transparent;
+            width: 100%;
+            min-height: 100%;
         }
 
         body {
-            background: var(--bg-gradient);
-            color: var(--text-dark);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--dark);
+            background:
+                radial-gradient(circle at 10% 10%, rgba(255, 143, 163, 0.25), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(112, 214, 255, 0.25), transparent 30%),
+                linear-gradient(135deg, #fff8fa, #f4fbff);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 20px 15px 60px 15px;
+            padding: 20px;
         }
 
-        header {
-            text-align: center;
-            margin-top: 15px;
-            margin-bottom: 25px;
-        }
-
-        h1 {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, #ff758f, #4ea8de);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-            text-align: center;
+        .container {
+            width: 100%;
+            max-width: 520px;
         }
 
         .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 25px;
-            width: 100%;
-            max-width: 480px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 28px;
+            padding: 30px 24px;
+            box-shadow: 0 20px 60px rgba(43, 45, 66, 0.12);
             text-align: center;
         }
 
-        .card h2 {
+        .hidden {
+            display: none !important;
+        }
+
+        /* HEADER */
+
+        .header {
+            margin-bottom: 28px;
+        }
+
+        .header h1 {
             font-family: 'Fredoka', sans-serif;
-            font-size: 1.5rem;
-            color: #4a4e69;
-            margin-bottom: 15px;
+            font-size: 36px;
+            line-height: 1.1;
+            margin: 0 0 8px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 15px;
+            color: #777;
         }
 
         /* CHRONO */
-        .timer-container {
+
+        .timer-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .timer {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin: 20px 0;
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
-        .timer-box {
-            background: #ffffff;
-            padding: 12px 14px;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            min-width: 75px;
-            border: 1px solid #f0f0f0;
+        .time-box {
+            min-width: 82px;
+            padding: 14px 8px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #fff, #f7f7f7);
+            box-shadow: inset 0 0 0 2px rgba(255, 143, 163, 0.12);
         }
 
-        .timer-number {
+        .time-number {
             font-family: 'Fredoka', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #3d5a80;
-            line-height: 1;
+            font-size: 30px;
+            font-weight: 600;
         }
 
-        .timer-label {
-            font-size: 0.75rem;
+        .time-label {
+            font-size: 11px;
             text-transform: uppercase;
-            color: #98c1d9;
-            font-weight: 700;
-            margin-top: 6px;
+            letter-spacing: 1px;
+            color: #888;
+            margin-top: 3px;
         }
 
-        .btn-bypass {
-            background: none;
+        .bypass-btn {
             border: none;
-            color: #8d99ae;
-            font-size: 0.9rem;
+            background: transparent;
+            color: #999;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 12px;
             text-decoration: underline;
             cursor: pointer;
-            margin-top: 12px;
-            padding: 8px 12px;
-            transition: color 0.2s;
+            padding: 8px;
         }
 
-        .btn-bypass:hover {
-            color: #2b2d42;
-        }
+        /* SCRATCH */
 
-        /* CARTE À GRATTER */
-        .scratch-wrapper {
-            position: relative;
-            width: 270px;
-            height: 270px;
-            margin: 10px auto;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-        }
-
-        .scratch-reveal-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border-radius: 50%;
-            padding: 20px;
-            text-align: center;
-            user-select: none;
-        }
-
-        .scratch-reveal-content.pink {
-            background: radial-gradient(circle, #fff0f5 0%, #ffdeeb 100%);
-        }
-
-        .gender-title {
+        .scratch-title {
             font-family: 'Fredoka', sans-serif;
-            font-size: 1.8rem;
-            margin-top: 10px;
-            animation: pulse 1.5s infinite alternate;
+            font-size: 25px;
+            margin: 0 0 8px;
         }
 
-        .gender-title.pink { color: #ff4d6d; }
+        .scratch-subtitle {
+            margin: 0 0 22px;
+            color: #777;
+            font-size: 14px;
+        }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.06); }
+        .scratch-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px auto 20px;
         }
 
         #scratchCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
+            width: 270px;
+            height: 270px;
+            border-radius: 50%;
             touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            box-shadow: 0 12px 35px rgba(43, 45, 66, 0.15);
         }
 
-        /* MODAL CODE DE SÉCURITÉ */
-        .modal-overlay {
-            position: fixed;
-            top:0; left:0; right:0; bottom:0;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
+        .reveal-message {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 1.25;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 20px;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 143, 163, 0.15),
+                rgba(112, 214, 255, 0.15)
+            );
+        }
+
+        /* MODAL */
+
+        #passModal {
             display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(43, 45, 66, 0.55);
             align-items: center;
             justify-content: center;
-            z-index: 1000;
+            padding: 20px;
         }
 
         .modal-content {
+            width: 100%;
+            max-width: 380px;
             background: white;
-            padding: 25px;
-            border-radius: 20px;
-            max-width: 320px;
-            width: 90%;
+            border-radius: 24px;
+            padding: 28px 22px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
         }
 
-        .error-msg {
-            color: #d90429;
-            font-size: 0.85rem;
-            margin-top: -6px;
+        .modal-content h2 {
+            font-family: 'Fredoka', sans-serif;
+            margin: 0 0 8px;
+            font-size: 25px;
+        }
+
+        .modal-content p {
+            margin: 0 0 18px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+            outline: none;
             margin-bottom: 10px;
-            display: none;
+            background: #fff;
+            color: var(--dark);
         }
 
-        .hidden { display: none !important; }
+        .input-field:focus {
+            border-color: var(--pink);
+            box-shadow: 0 0 0 3px rgba(255, 143, 163, 0.15);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, var(--pink), var(--blue));
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .close-btn {
+            margin-top: 10px;
+            border: none;
+            background: transparent;
+            color: #999;
+            font-family: 'Quicksand', sans-serif;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .error {
+            display: none;
+            color: #e63946;
+            font-size: 13px;
+            margin: 8px 0;
+            font-weight: 600;
+        }
+
+        @media (max-width: 400px) {
+            .card {
+                padding: 25px 16px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .time-box {
+                min-width: 72px;
+            }
+
+            .time-number {
+                font-size: 27px;
+            }
+
+            #scratchCanvas {
+                width: 250px;
+                height: 250px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <h1>Perlette ou Perlereau</h1>
-    </header>
+<div class="container">
 
-    <!-- ETAPE 1 : COMPTE À REBOURS -->
-    <div class="card" id="stepTimer">
-        <h2>Le Grand Décompte</h2>
-        <div class="timer-container">
-            <div class="timer-box">
-                <div class="timer-number" id="t-hours">00</div>
-                <div class="timer-label">Heures</div>
-            </div>
-            <div class="timer-box">
-                <div class="timer-number" id="t-minutes">00</div>
-                <div class="timer-label">Minutes</div>
-            </div>
-            <div class="timer-box">
-                <div class="timer-number" id="t-seconds">00</div>
-                <div class="timer-label">Secondes</div>
-            </div>
+    <div class="card">
+
+        <!-- HEADER -->
+        <div class="header">
+            <h1>Perlette ou Perlereau ✨</h1>
+            <p>Une petite surprise se prépare...</p>
         </div>
-        <button type="button" class="btn-bypass" onclick="openPassModal('timer')">Passer le chrono</button>
+
+
+        <!-- ETAPE 1 : CHRONO -->
+        <div id="stepTimer">
+
+            <div class="timer-title">
+                Encore un peu de patience... 🍼
+            </div>
+
+            <div class="timer">
+
+                <div class="time-box">
+                    <div class="time-number" id="t-hours">00</div>
+                    <div class="time-label">heures</div>
+                </div>
+
+                <div class="time-box">
+                    <div class="time-number" id="t-minutes">00</div>
+                    <div class="time-label">minutes</div>
+                </div>
+
+                <div class="time-box">
+                    <div class="time-number" id="t-seconds">00</div>
+                    <div class="time-label">secondes</div>
+                </div>
+
+            </div>
+
+            <button class="bypass-btn" onclick="openPassModal()">
+                Accès spécial
+            </button>
+
+        </div>
+
+
+        <!-- ETAPE 2 : CARTE À GRATTER -->
+        <div id="stepScratch" class="hidden">
+
+            <div class="scratch-title">
+                C'est l'heure ! 🎉
+            </div>
+
+            <p class="scratch-subtitle">
+                Gratte doucement la carte pour découvrir le secret...
+            </p>
+
+            <div class="scratch-wrapper">
+                <canvas id="scratchCanvas" width="270" height="270"></canvas>
+            </div>
+
+            <div id="revealMessage" class="reveal-message hidden">
+                C'est une Perlette ! 👧💖👶✨
+            </div>
+
+        </div>
+
     </div>
 
-    <!-- ETAPE 2 : CARTE À GRATTER -->
-    <div class="card hidden" id="stepScratch">
-        <h2>Grattez pour découvrir !</h2>
-        
-        <div class="scratch-wrapper">
-            <div class="scratch-reveal-content pink" id="revealBox">
-                <div style="font-size: 3.5rem;">👧</div>
-                <div class="gender-title pink" id="genderText">C'est une Perlette ! 👧💖👶✨</div>
-            </div>
-            <canvas id="scratchCanvas" width="270" height="270"></canvas>
+</div>
+
+
+<!-- MODAL MOT DE PASSE -->
+
+<div id="passModal">
+
+    <div class="modal-content">
+
+        <h2>Accès spécial 🔐</h2>
+
+        <p>
+            Entre le mot de passe pour accéder à la surprise.
+        </p>
+
+        <input
+            id="passInput"
+            class="input-field"
+            type="password"
+            placeholder="Mot de passe"
+            onkeydown="checkEnterKey(event)"
+            autocomplete="off"
+        >
+
+        <div id="passError" class="error">
+            Mot de passe incorrect.
         </div>
+
+        <button class="submit-btn" onclick="validatePassword()">
+            Découvrir ✨
+        </button>
+
+        <button class="close-btn" onclick="closePassModal()">
+            Fermer
+        </button>
+
     </div>
 
-    <!-- MODAL POUR PASSER LE CHRONO -->
-    <div class="modal-overlay" id="passModal">
-        <div class="modal-content">
-            <h3 style="margin-bottom:12px; font-family:'Fredoka', sans-serif;">Passer le chrono</h3>
-            <input type="password" id="passInput" class="input-field" placeholder="Mot de passe" onkeyup="checkEnterKey(event)">
-            <div class="error-msg" id="passError">Mot de passe incorrect</div>
-            <button class="submit-btn" style="padding: 10px;" onclick="validatePassword()">Valider</button>
-            <button type="button" class="btn-bypass" onclick="closePassModal()">Annuler</button>
-        </div>
-    </div>
+</div>
 
-    <script>
-        const SECRET_PASS = "pagnol";
-        let isRevealed = false;
-        let scratchInitialized = false;
 
-        // CALCUL DE L'HEURE CIBLE
-        function getTargetTime() {
-            const now = new Date();
-            let target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 17, 0, 0, 0);
+<script>
 
-            return target.getTime();
+    /* ==============================
+       VARIABLES
+    ============================== */
+
+    const SECRET_PASS = "pagnol";
+
+    let isRevealed = false;
+    let scratchInitialized = false;
+    let timerInterval = null;
+
+
+    /* ==============================
+       HEURE CIBLE
+    ============================== */
+
+    function getTargetTime() {
+
+        const now = new Date();
+
+        /*
+         * HEURE DU REVEAL
+         *
+         * TEST : 17h
+         * FINAL : remplacer 17 par 19
+         */
+
+        const target = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            17,
+            0,
+            0,
+            0
+        );
+
+        return target.getTime();
+    }
+
+
+    const targetTime = getTargetTime();
+
+
+    /* ==============================
+       CHRONO
+    ============================== */
+
+    function updateTimer() {
+
+        const now = Date.now();
+        const diff = targetTime - now;
+
+
+        /*
+         * SI L'HEURE EST ATTEINTE
+         * OU DEPASSÉE :
+         * ON PASSE DIRECTEMENT
+         * À LA CARTE.
+         */
+
+        if (diff <= 0) {
+
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+
+            showScratchSection();
+
+            return;
         }
 
-        let targetTime = getTargetTime();
 
-        function updateTimer() {
-            const now = new Date().getTime();
-            const diff = targetTime - now;
+        const hours =
+            Math.floor(diff / (1000 * 60 * 60));
 
-            if (diff <= 0) {
+        const minutes =
+            Math.floor(
+                (diff % (1000 * 60 * 60)) /
+                (1000 * 60)
+            );
+
+        const seconds =
+            Math.floor(
+                (diff % (1000 * 60)) /
+                1000
+            );
+
+
+        document.getElementById('t-hours').innerText =
+            String(hours).padStart(2, '0');
+
+        document.getElementById('t-minutes').innerText =
+            String(minutes).padStart(2, '0');
+
+        document.getElementById('t-seconds').innerText =
+            String(seconds).padStart(2, '0');
+    }
+
+
+    /*
+     * IMPORTANT :
+     * On vérifie immédiatement,
+     * puis toutes les 250 ms.
+     *
+     * Donc si la page est ouverte
+     * après 17h, la carte apparaît
+     * directement.
+     */
+
+    updateTimer();
+
+    timerInterval = setInterval(updateTimer, 250);
+
+
+    /* ==============================
+       AFFICHER LA CARTE
+    ============================== */
+
+    function showScratchSection() {
+
+        const timerSection =
+            document.getElementById('stepTimer');
+
+        const scratchSection =
+            document.getElementById('stepScratch');
+
+
+        timerSection.classList.add('hidden');
+
+        scratchSection.classList.remove('hidden');
+
+
+        /*
+         * On initialise la carte
+         * une seule fois.
+         */
+
+        if (!scratchInitialized) {
+
+            initScratchCard();
+
+            scratchInitialized = true;
+        }
+    }
+
+
+    /* ==============================
+       MOT DE PASSE
+    ============================== */
+
+    function openPassModal() {
+
+        document.getElementById('passModal').style.display = 'flex';
+
+        document.getElementById('passInput').value = '';
+
+        document.getElementById('passError').style.display = 'none';
+
+
+        setTimeout(() => {
+
+            document.getElementById('passInput').focus();
+
+        }, 100);
+    }
+
+
+    function closePassModal() {
+
+        /*
+         * On retire le focus du champ
+         * pour éviter le zoom Safari.
+         */
+
+        document.activeElement.blur();
+
+        document.getElementById('passModal').style.display = 'none';
+
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'instant'
+        });
+    }
+
+
+    function checkEnterKey(event) {
+
+        if (event.key === 'Enter') {
+
+            validatePassword();
+        }
+    }
+
+
+    function validatePassword() {
+
+        const value =
+            document.getElementById('passInput')
+            .value
+            .trim()
+            .toLowerCase();
+
+
+        if (value === SECRET_PASS) {
+
+            closePassModal();
+
+            if (timerInterval) {
+
                 clearInterval(timerInterval);
-                showScratchSection();
+
+                timerInterval = null;
+            }
+
+            showScratchSection();
+
+        } else {
+
+            document.getElementById('passError').style.display = 'block';
+        }
+    }
+
+
+    /* ==============================
+       CARTE À GRATTER
+    ============================== */
+
+    function initScratchCard() {
+
+        const canvas =
+            document.getElementById('scratchCanvas');
+
+        const ctx =
+            canvas.getContext('2d');
+
+
+        /*
+         * FOND DORE
+         */
+
+        const gradient =
+            ctx.createLinearGradient(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+        gradient.addColorStop(0, '#ffd166');
+
+        gradient.addColorStop(0.5, '#f6bd60');
+
+        gradient.addColorStop(1, '#e9a227');
+
+
+        ctx.fillStyle = gradient;
+
+        ctx.fillRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        /*
+         * CERCLE VISUEL
+         */
+
+        ctx.beginPath();
+
+        ctx.arc(
+            canvas.width / 2,
+            canvas.height / 2,
+            canvas.width / 2 - 3,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+
+        ctx.lineWidth = 4;
+
+        ctx.stroke();
+
+
+        /*
+         * TEXTE
+         */
+
+        ctx.fillStyle = '#ffffff';
+
+        ctx.textAlign = 'center';
+
+        ctx.textBaseline = 'middle';
+
+        ctx.font = '700 23px Fredoka';
+
+        ctx.fillText(
+            'Grattez ici ✨',
+            canvas.width / 2,
+            canvas.height / 2
+        );
+
+
+        let scratching = false;
+
+        let scratchedPixels = 0;
+
+        const totalPixels =
+            canvas.width * canvas.height;
+
+
+        function getPosition(event) {
+
+            const rect =
+                canvas.getBoundingClientRect();
+
+            let clientX;
+            let clientY;
+
+
+            if (event.touches && event.touches.length) {
+
+                clientX = event.touches[0].clientX;
+
+                clientY = event.touches[0].clientY;
+
+            } else {
+
+                clientX = event.clientX;
+
+                clientY = event.clientY;
+            }
+
+
+            return {
+
+                x:
+                    (clientX - rect.left)
+                    * canvas.width
+                    / rect.width,
+
+                y:
+                    (clientY - rect.top)
+                    * canvas.height
+                    / rect.height
+            };
+        }
+
+
+        function scratch(event) {
+
+            if (!scratching || isRevealed) {
                 return;
             }
 
-            const h = Math.floor(diff / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById('t-hours').innerText = String(h).padStart(2, '0');
-            document.getElementById('t-minutes').innerText = String(m).padStart(2, '0');
-            document.getElementById('t-seconds').innerText = String(s).padStart(2, '0');
-        }
+            event.preventDefault();
 
-        const timerInterval = setInterval(updateTimer, 1000);
-        updateTimer();
 
-        function showScratchSection() {
-            document.getElementById('stepTimer').classList.add('hidden');
-            document.getElementById('stepScratch').classList.remove('hidden');
-            if (!scratchInitialized) {
-                initScratchCard();
-                scratchInitialized = true;
-            }
-        }
+            const pos =
+                getPosition(event);
 
-        function openPassModal() {
-            document.getElementById('passModal').style.display = 'flex';
-            document.getElementById('passInput').value = '';
-            document.getElementById('passError').style.display = 'none';
-            setTimeout(() => document.getElementById('passInput').focus(), 100);
-        }
 
-        function closePassModal() {
-            document.getElementById('passModal').style.display = 'none';
-        }
+            ctx.globalCompositeOperation =
+                'destination-out';
 
-        function checkEnterKey(e) {
-            if (e.key === 'Enter') {
-                validatePassword();
-            }
-        }
 
-        function validatePassword() {
-            const val = document.getElementById('passInput').value.trim().toLowerCase();
-            if (val === SECRET_PASS) {
-                closePassModal();
-                clearInterval(timerInterval);
-                showScratchSection();
-            } else {
-                document.getElementById('passError').style.display = 'block';
-            }
-        }
-
-        function initScratchCard() {
-            const canvas = document.getElementById('scratchCanvas');
-            const ctx = canvas.getContext('2d');
-            const width = canvas.width;
-            const height = canvas.height;
-
-            // Fond doré interactif
-            const grad = ctx.createLinearGradient(0, 0, width, height);
-            grad.addColorStop(0, '#bf953f');
-            grad.addColorStop(0.25, '#fcf6ba');
-            grad.addColorStop(0.5, '#b38728');
-            grad.addColorStop(0.75, '#fbf5b7');
-            grad.addColorStop(1, '#aa771c');
-
-            ctx.fillStyle = grad;
             ctx.beginPath();
-            ctx.arc(width/2, height/2, width/2, 0, Math.PI * 2);
+
+            ctx.arc(
+                pos.x,
+                pos.y,
+                22,
+                0,
+                Math.PI * 2
+            );
+
             ctx.fill();
 
-            // Texte d'instruction
-            ctx.fillStyle = "#5c4004";
-            ctx.font = "bold 18px Quicksand, sans-serif";
-            ctx.textAlign = "center";
-            ctx.fillText("Grattez ici ✨", width/2, height/2 + 6);
 
-            let isDrawing = false;
+            /*
+             * Vérification de la quantité grattée
+             */
 
-            function scratch(e) {
-                if (!isDrawing) return;
-                const rect = canvas.getBoundingClientRect();
-                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-                const x = clientX - rect.left;
-                const y = clientY - rect.top;
+            if (Math.random() < 0.05) {
 
-                ctx.globalCompositeOperation = 'destination-out';
-                ctx.beginPath();
-                ctx.arc(x, y, 22, 0, Math.PI * 2);
-                ctx.fill();
+                const imageData =
+                    ctx.getImageData(
+                        0,
+                        0,
+                        canvas.width,
+                        canvas.height
+                    );
 
-                checkScratchPercentage();
-            }
+                let transparent = 0;
 
-            function checkScratchPercentage() {
-                if (isRevealed) return;
 
-                const imgData = ctx.getImageData(0, 0, width, height);
-                const pixels = imgData.data;
-                let transparentPixels = 0;
+                for (
+                    let i = 3;
+                    i < imageData.data.length;
+                    i += 4
+                ) {
 
-                for (let i = 3; i < pixels.length; i += 4) {
-                    if (pixels[i] === 0) transparentPixels++;
+                    if (imageData.data[i] === 0) {
+
+                        transparent++;
+                    }
                 }
 
-                const percentage = (transparentPixels / (pixels.length / 4)) * 100;
 
-                if (percentage >= 10) {
-                    isRevealed = true;
-                    triggerLongCelebration();
+                scratchedPixels =
+                    transparent;
+
+
+                const percentage =
+                    scratchedPixels / totalPixels;
+
+
+                if (percentage > 0.10) {
+
+                    revealScratch();
                 }
             }
-
-            canvas.addEventListener('mousedown', () => isDrawing = true);
-            canvas.addEventListener('mouseup', () => isDrawing = false);
-            canvas.addEventListener('mouseleave', () => isDrawing = false);
-            canvas.addEventListener('mousemove', scratch);
-
-            canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
-            canvas.addEventListener('touchend', () => isDrawing = false);
-            canvas.addEventListener('touchmove', scratch);
         }
 
-        function triggerLongCelebration() {
-            playLongMusic();
 
-            const duration = 12500;
-            const end = Date.now() + duration;
+        function startScratch(event) {
 
-            (function frame() {
+            scratching = true;
+
+            scratch(event);
+        }
+
+
+        function stopScratch() {
+
+            scratching = false;
+        }
+
+
+        canvas.addEventListener(
+            'mousedown',
+            startScratch
+        );
+
+        canvas.addEventListener(
+            'mousemove',
+            scratch
+        );
+
+        canvas.addEventListener(
+            'mouseup',
+            stopScratch
+        );
+
+        canvas.addEventListener(
+            'mouseleave',
+            stopScratch
+        );
+
+
+        canvas.addEventListener(
+            'touchstart',
+            startScratch,
+            { passive: false }
+        );
+
+        canvas.addEventListener(
+            'touchmove',
+            scratch,
+            { passive: false }
+        );
+
+        canvas.addEventListener(
+            'touchend',
+            stopScratch
+        );
+
+
+        /*
+         * Empêche le menu contextuel
+         */
+
+        canvas.addEventListener(
+            'contextmenu',
+            event => event.preventDefault()
+        );
+    }
+
+
+    /* ==============================
+       REVELATION
+    ============================== */
+
+    function revealScratch() {
+
+        if (isRevealed) {
+            return;
+        }
+
+
+        isRevealed = true;
+
+
+        document.getElementById(
+            'revealMessage'
+        ).classList.remove('hidden');
+
+
+        triggerLongCelebration();
+    }
+
+
+    /* ==============================
+       CONFETTIS + MUSIQUE
+    ============================== */
+
+    function triggerLongCelebration() {
+
+        const duration = 12500;
+
+        const animationEnd =
+            Date.now() + duration;
+
+
+        /*
+         * CONFETTIS
+         */
+
+        const interval =
+            setInterval(() => {
+
+                const timeLeft =
+                    animationEnd - Date.now();
+
+
+                if (timeLeft <= 0) {
+
+                    clearInterval(interval);
+
+                    return;
+                }
+
+
                 confetti({
-                    particleCount: 4,
+                    particleCount: 12,
                     angle: 60,
-                    spread: 55,
-                    origin: { x: 0 },
-                    colors: ['#ff8fa3', '#ffd166', '#ffffff', '#ffb3c1']
+                    spread: 70,
+                    origin: {
+                        x: 0,
+                        y: 0.65
+                    }
                 });
+
+
                 confetti({
-                    particleCount: 4,
+                    particleCount: 12,
                     angle: 120,
-                    spread: 55,
-                    origin: { x: 1 },
-                    colors: ['#ff8fa3', '#ffd166', '#ffffff', '#ffb3c1']
+                    spread: 70,
+                    origin: {
+                        x: 1,
+                        y: 0.65
+                    }
                 });
 
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
-            }());
-        }
+            }, 180);
 
-        function playLongMusic() {
-            try {
-                const AudioContext = window.AudioContext || window.webkitAudioContext;
-                if (!AudioContext) return;
-                const ctx = new AudioContext();
 
-                const notes = [
-                    { f: 523.25, d: 0.3 }, { f: 659.25, d: 0.3 }, { f: 783.99, d: 0.3 }, { f: 1046.50, d: 0.6 },
-                    { f: 880.00, d: 0.3 }, { f: 1046.50, d: 0.8 },
-                    { f: 587.33, d: 0.3 }, { f: 698.46, d: 0.3 }, { f: 880.00, d: 0.3 }, { f: 1174.66, d: 0.6 },
-                    { f: 1046.50, d: 0.3 }, { f: 1318.51, d: 0.9 }
-                ];
+        /*
+         * MUSIQUE
+         */
 
-                let now = ctx.currentTime;
-                notes.forEach(note => {
-                    const osc = ctx.createOscillator();
-                    const gain = ctx.createGain();
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(note.f, now);
-                    
-                    gain.gain.setValueAtTime(0.12, now);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, now + note.d);
+        playCelebrationSound();
+    }
 
-                    osc.connect(gain);
-                    gain.connect(ctx.destination);
 
-                    osc.start(now);
-                    osc.stop(now + note.d);
-                    now += note.d * 0.9;
-                });
-            } catch(e) {
-                console.log("Audio Web non supporté ou bloqué.");
+    function playCelebrationSound() {
+
+        try {
+
+            const AudioContext =
+                window.AudioContext ||
+                window.webkitAudioContext;
+
+
+            if (!AudioContext) {
+                return;
             }
-        }
 
-    </script>
+
+            const audio =
+                new AudioContext();
+
+
+            const notes = [
+                523.25,
+                659.25,
+                783.99,
+                1046.50,
+                783.99,
+                659.25,
+                783.99,
+                1046.50
+            ];
+
+
+            notes.forEach((frequency, index) => {
+
+                const oscillator =
+                    audio.createOscillator();
+
+                const gain =
+                    audio.createGain();
+
+
+                oscillator.type = 'triangle';
+
+                oscillator.frequency.value =
+                    frequency;
+
+
+                oscillator.connect(gain);
+
+                gain.connect(audio.destination);
+
+
+                const start =
+                    audio.currentTime +
+                    index * 0.18;
+
+
+                const end =
+                    start + 0.16;
+
+
+                gain.gain.setValueAtTime(
+                    0.0001,
+                    start
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    0.18,
+                    start + 0.02
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    0.0001,
+                    end
+                );
+
+
+                oscillator.start(start);
+
+                oscillator.stop(end);
+            });
+
+
+        } catch (error) {
+
+            console.log(
+                'Audio non disponible',
+                error
+            );
+        }
+    }
+
+</script>
+
 </body>
 </html>
-
-
