@@ -168,13 +168,13 @@
             -webkit-user-select: none;
             box-shadow: 0 12px 35px rgba(43, 45, 66, 0.15);
         }
-
+        
         .reveal-message {
             font-family: 'Fredoka', sans-serif;
             font-size: 28px;
             font-weight: 600;
             line-height: 1.25;
-            margin-top: 20px;
+            margin: 20px auto 0;
             padding: 20px;
             border-radius: 20px;
             background: linear-gradient(
@@ -182,6 +182,7 @@
                 rgba(255, 143, 163, 0.15),
                 rgba(112, 214, 255, 0.15)
             );
+            max-width: 350px;
         }
 
         /* MODAL */
@@ -343,23 +344,15 @@
 
         <!-- ETAPE 2 : CARTE À GRATTER -->
         <div id="stepScratch" class="hidden">
-
-            <div class="scratch-title">
-                C'est l'heure ! 🎉
-            </div>
-
-            <p class="scratch-subtitle">
-                Gratte doucement la carte pour découvrir le secret...
-            </p>
-
-            <div class="scratch-wrapper">
-                <canvas id="scratchCanvas" width="270" height="270"></canvas>
-            </div>
-
-            <div id="revealMessage" class="reveal-message hidden">
-                C'est une Perlette ! 👧💖👶✨
-            </div>
-
+                <div class="scratch-wrapper">
+                    <div>
+                        <canvas id="scratchCanvas" width="270" height="270"></canvas>
+                
+                        <div id="revealMessage" class="reveal-message hidden">
+                            C'est une Perlette ! 👧💖👶✨
+                        </div>
+                    </div>
+                </div>
         </div>
 
     </div>
